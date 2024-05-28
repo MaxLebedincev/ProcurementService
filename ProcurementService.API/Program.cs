@@ -1,11 +1,11 @@
 using ProcurementService.API;
-using ProcurementService.API.DAL;
-using ProcurementService.API.DAL.Repositories;
-using ProcurementService.API.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ProcurementService.API.Service.Registeration;
 using ProcurementService.API.Service;
+using ProcurementService.API.DAL.Core;
+using ProcurementService.API.DAL.Schemes.Security.Users;
+using ProcurementService.API.DAL.Schemes.Security.Roles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,13 +27,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddUnitOfWork();
 
-builder.Services.AddCustomRepository<TypeBallroomDance, TypeBallroomDanceRepository>();
-builder.Services.AddCustomRepository<RussiaTrainerBallroomDance, RussiaTrainerBallroomDanceRepository>();
-builder.Services.AddCustomRepository<DanceGroup, DanceGroupRepository>();
-builder.Services.AddCustomRepository<ServerFile, ServerFileRepository>();
-builder.Services.AddCustomRepository<MemberDanceGroup, MemberDanceGroupRepository>();
-builder.Services.AddCustomRepository<UserRole, UserRoleRepository>();
 builder.Services.AddCustomRepository<User, UserRepository>();
+builder.Services.AddCustomRepository<Role, RoleRepository>();
 
 builder.Services.AddAuthentication(builder.Configuration);
 
