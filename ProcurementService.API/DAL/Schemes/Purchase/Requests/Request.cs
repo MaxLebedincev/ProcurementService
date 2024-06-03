@@ -8,10 +8,7 @@ namespace ProcurementService.API.DAL.Schemes.Purchase.Requests
         public int Id { get; set; }
 
         public List<Product>? Products { get; set; } = new();
-
-        public Guid UUIDFile { get; set; }
-        public ServerFile file { get; set; }
-
+        public ServerFile? File { get; set; }
 
         public string Name { get; set; } = null!;
         public DateTime CreateAt { get; set; }

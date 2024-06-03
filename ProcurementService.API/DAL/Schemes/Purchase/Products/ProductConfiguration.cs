@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using ProcurementService.API.DAL.Schemes.Purchase.Filters;
 
 namespace ProcurementService.API.DAL.Schemes.Purchase.Products
 {
@@ -10,24 +9,22 @@ namespace ProcurementService.API.DAL.Schemes.Purchase.Products
         {
             builder.ToTable("products", "purchase");
 
-            builder.HasKey(x => x.Id).HasName("id").HasName("ProductsPrimaryKey");
+            builder.HasKey(x => x.Id).HasName("ProductsPrimaryKey");
 
             builder
                 .HasOne(p => p.Request)
                 .WithMany(r => r.Products)
-                .HasForeignKey(p => p.RequestId);
+                .HasForeignKey(p => p.RequestId)
+                .OnDelete(DeleteBehavior.SetNull);
 
-            builder
-                .HasOne(f => f.Filter)
-                .WithMany(r => r.Products)
-                .HasForeignKey(p => p.FilterId);
-
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired();
-            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(1000);
-            builder.Property(x => x.CreateAt).HasColumnName("create_at").ValueGeneratedOnAdd().IsRequired();
-            builder.Property(x => x.UpdateAt).HasColumnName("update_at").ValueGeneratedOnUpdate().IsRequired();
-            builder.Property(x => x.Count).HasColumnName("count").IsRequired();
-            builder.Property(x => x.Price).HasColumnName("price").IsRequired();
+            builder.Property(x => x.Id).HasColumnName("id");
+            builder.Property(x => x.RequestId).HasColumnName("request_id").HasDefaultValue(null).IsRequired(false);
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired(true);
+            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(1000).IsRequired(false);
+            builder.Property(x => x.CreateAt).HasColumnName("create_at").ValueGeneratedOnAdd().IsRequired(true);
+            builder.Property(x => x.UpdateAt).HasColumnName("update_at").ValueGeneratedOnUpdate().IsRequired(true);
+            builder.Property(x => x.Count).HasColumnName("count").IsRequired(true);
+            builder.Property(x => x.Price).HasColumnName("price").IsRequired(true);
         }
     }
 }

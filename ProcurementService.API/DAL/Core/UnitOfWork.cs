@@ -6,11 +6,11 @@ namespace ProcurementService.API.DAL.Core
 {
     public class UnitOfWork : IRepositoryFactory, IUnitOfWork
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationContext _context;
         private bool _disposed = false;
         private Dictionary<Type, object>? _repositories;
 
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(ApplicationContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

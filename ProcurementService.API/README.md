@@ -8,29 +8,9 @@
 2. Entity Framework
 3. SQL Server (MS SQL)
 
-### Включает в себя:
+### Команды добавление миграции
 
-- Controllers - точки входа
-	- Interaction - объекты взаимодействия с точками входа
-- DAL - слой доступа к данным
-	- Configurations - конфигурация сущностей таблиц
-	- Interfaces 	 - интерфейсы сущностей DAL
-	- Repositories 	 - представление таблиц в виде сущностей
-	- ApplicationDbContext - контекст приложения
-	- UnitOfWork - единица работы (выполняет все операции с бд)
-- Domain - домен
-	- Entity - сущности таблиц
-- Migrations - миграции бд
-	- AllSelect  - все select
-	- databaseMS - бэкап БД
-	- FillData   - заполнение данных
-- Service - сервисы
-	- Registeration    - регистрация сервисов
-	- ExceptionHandler - обработчик ошибок
-- Tools - инструменты
-	- Security - безопасности
-- appsettings 	  - конфигурация приложения
-- Scheme_DataBase - схема БД
+add-migration Create_DataBase -context ApplicationDbContext -o DAL/Migrations
 
 > [!TIP] 
 > Проект использует паттерны: <br />

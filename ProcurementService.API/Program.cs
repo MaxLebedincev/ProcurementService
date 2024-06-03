@@ -4,8 +4,6 @@ using Microsoft.Extensions.Options;
 using ProcurementService.API.Service.Registeration;
 using ProcurementService.API.Service;
 using ProcurementService.API.DAL.Core;
-using ProcurementService.API.DAL.Schemes.Security.Users;
-using ProcurementService.API.DAL.Schemes.Security.Roles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,16 +17,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     options.LogTo(Console.WriteLine);
-    options.UseSqlServer(builder.Configuration["AppSettings:ConnectionString"]);
+    options.UseSqlServer(builder.Configuration["AppSettings:ConnectionString"]);  
 });
 
 builder.Services.AddUnitOfWork();
 
-builder.Services.AddCustomRepository<User, UserRepository>();
-builder.Services.AddCustomRepository<Role, RoleRepository>();
+builder.Services.AddRepositories();
 
 builder.Services.AddAuthentication(builder.Configuration);
 
@@ -39,6 +36,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();
+
+app.MigrateApplicationAsync();
 
 app.UseExceptionHandler(_ => { });
 
@@ -51,7 +50,6 @@ app.Map("*", (IOptions<AppSettings> options) =>
     return _appSettings;
 });
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

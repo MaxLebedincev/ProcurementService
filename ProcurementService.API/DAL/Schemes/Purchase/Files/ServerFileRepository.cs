@@ -1,12 +1,11 @@
 ﻿using ProcurementService.API.DAL.Core.Interfaces;
 using ProcurementService.API.DAL.Core;
-using ProcurementService.API.DAL.Schemes.Security.UsersRoles;
 
 namespace ProcurementService.API.DAL.Schemes.Purchase.Files
 {
-    public class ServerFileRepository : BaseRepository<UserRole>, IBaseRepository<UserRole>
+    public class ServerFileRepository : BaseRepository<ServerFile>, IBaseRepository<ServerFile>
     {
-        public ServerFileRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public ServerFileRepository(ApplicationContext dbContext) : base(dbContext)
         {
         }
     }

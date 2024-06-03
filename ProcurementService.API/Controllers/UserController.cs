@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ProcurementService.API.DAL.Core.Interfaces;
-using ProcurementService.API.DAL.Schemes.Security.Users;
-using ProcurementService.API.DAL.Schemes.Security.Users.UserInteraction;
 
 namespace ProcurementService.API.Controllers
 {

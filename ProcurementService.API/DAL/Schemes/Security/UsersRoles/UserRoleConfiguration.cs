@@ -23,8 +23,8 @@ namespace ProcurementService.API.DAL.Schemes.Security.UsersRoles
                     .WithMany(u => u.UserRoles)
                     .HasForeignKey(u => u.RoleId);
 
-                builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired();
-                builder.Property(x => x.RoleId).HasColumnName("role_id").IsRequired();
+                builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired(true);
+                builder.Property(x => x.RoleId).HasColumnName("role_id").IsRequired(true);
             }
         }
     }

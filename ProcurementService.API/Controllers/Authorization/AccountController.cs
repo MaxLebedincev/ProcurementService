@@ -7,9 +7,6 @@ using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using ProcurementService.API.DAL.Core.Interfaces;
-using ProcurementService.API.DAL.Schemes.Security.Users;
-using ProcurementService.API.DAL.Schemes.Security.Roles;
-using ProcurementService.API.DAL.Schemes.Security.Users.UserInteraction;
 
 namespace ProcurementService.API.Controllers.Authorization
 {
@@ -27,7 +24,7 @@ namespace ProcurementService.API.Controllers.Authorization
         }
 
         [HttpPost("Test")]
-        public async Task<ActionResult> Register([FromBody] UserRequest data)
+        public async Task<ActionResult> Register()
         {
             return new JsonResult(new
             {

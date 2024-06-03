@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using ProcurementService.API.DAL.Schemes.Security.Roles;
 
 namespace ProcurementService.API.DAL.Schemes.Purchase.Requests
 {
@@ -10,21 +9,16 @@ namespace ProcurementService.API.DAL.Schemes.Purchase.Requests
         {
             builder.ToTable("requests", "purchase");
 
-            builder.HasKey(x => x.Id).HasName("id").HasName("RequestsPrimaryKey");
+            builder.HasKey(x => x.Id).HasName("RequestsPrimaryKey");
 
-            builder
-                .HasOne(x => x.file)
-                .WithOne()
-                .HasForeignKey<Request>(f => f.UUIDFile);
-
-            builder.Property(x => x.UUIDFile).HasColumnName("uuid_file");
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired();
-            builder.Property(x => x.CreateAt).HasColumnName("create_at").ValueGeneratedOnAdd();
-            builder.Property(x => x.UpdateAt).HasColumnName("update_at").ValueGeneratedOnUpdate();
-            builder.Property(x => x.IdCreate).HasColumnName("id_create");
-            builder.Property(x => x.IdUpdate).HasColumnName("id_update");
-            builder.Property(x => x.IsConfirmed).HasColumnName("is_confirmed").IsRequired();
-            builder.Property(x => x.IdConfirmed).HasColumnName("id_confirmed").IsRequired();
+            builder.Property(x => x.Id).HasColumnName("id");
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired(true);
+            builder.Property(x => x.CreateAt).HasColumnName("create_at").ValueGeneratedOnAdd().IsRequired(true);
+            builder.Property(x => x.UpdateAt).HasColumnName("update_at").ValueGeneratedOnUpdate().IsRequired(true);
+            builder.Property(x => x.IdCreate).HasColumnName("id_create").IsRequired(true);
+            builder.Property(x => x.IdUpdate).HasColumnName("id_update").IsRequired(true);
+            builder.Property(x => x.IsConfirmed).HasColumnName("is_confirmed").IsRequired(true);
+            builder.Property(x => x.IdConfirmed).HasColumnName("id_confirmed").IsRequired(true);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace ProcurementService.API.DAL.Schemes.Security.Users
 {
     public class UserRepository : BaseRepository<User>, IBaseRepository<User>
     {
-        public UserRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public UserRepository(ApplicationContext dbContext) : base(dbContext)
         {
         }
     }

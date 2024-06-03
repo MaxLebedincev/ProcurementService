@@ -11,7 +11,8 @@ namespace ProcurementService.API.DAL.Schemes.Security.Roles
 
             builder.HasKey(x => x.Id).HasName("id").HasName("RolesPrimaryKey");
 
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired();
+            builder.Property(x => x.Id).HasColumnName("id");
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired(true);
         }
     }
 }

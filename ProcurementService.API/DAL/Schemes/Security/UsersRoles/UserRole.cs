@@ -1,6 +1,4 @@
-﻿using Azure;
-using Microsoft.Extensions.Hosting;
-using ProcurementService.API.DAL.Schemes.Security.Roles;
+﻿using ProcurementService.API.DAL.Schemes.Security.Roles;
 using ProcurementService.API.DAL.Schemes.Security.Users;
 
 namespace ProcurementService.API.DAL.Schemes.Security.UsersRoles

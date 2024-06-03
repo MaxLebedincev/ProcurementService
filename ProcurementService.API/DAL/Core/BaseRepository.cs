@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using ProcurementService.API.DAL.Core.Interfaces;
 
 namespace ProcurementService.API.DAL.Core
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        protected readonly ApplicationDbContext _dbContext;
+        protected readonly ApplicationContext _dbContext;
         protected readonly DbSet<TEntity> _dbSet;
-        public BaseRepository(ApplicationDbContext dbContext)
+        public BaseRepository(ApplicationContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             _dbSet = _dbContext.Set<TEntity>();

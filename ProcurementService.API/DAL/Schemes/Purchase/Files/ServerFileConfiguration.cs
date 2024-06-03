@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using ProcurementService.API.DAL.Schemes.Purchase.Requests;
 
 namespace ProcurementService.API.DAL.Schemes.Purchase.Files
 {
@@ -9,15 +10,21 @@ namespace ProcurementService.API.DAL.Schemes.Purchase.Files
         {
             builder.ToTable("files", "purchase");
 
-            builder.HasKey(x => x.UUID).HasName("uuid").HasName("FilePrimaryKey");
+            builder.HasKey(x => x.Id).HasName("FilesPrimaryKey");
 
-            builder.Property(x => x.UUID).HasDefaultValueSql("NEWID()");
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired();
-            builder.Property(x => x.CreateAt).HasColumnName("create_at").ValueGeneratedOnAdd();
-            builder.Property(x => x.UpdateAt).HasColumnName("update_at").ValueGeneratedOnUpdate();
-            builder.Property(x => x.IdCreate).HasColumnName("id_create").IsRequired();
-            builder.Property(x => x.IdUpdate).HasColumnName("id_update").IsRequired();
-            builder.Property(x => x.Size).HasColumnName("size").IsRequired();
+            builder
+                .HasOne(x => x.Request)
+                .WithOne(x => x.File)
+                .HasPrincipalKey<Request>(x => x.Id)
+                .HasForeignKey<ServerFile>(m => m.Id);
+
+            builder.Property(x => x.Id).HasColumnName("id").IsRequired(true);
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(250).IsRequired(true);
+            builder.Property(x => x.CreateAt).HasColumnName("create_at").ValueGeneratedOnAdd().IsRequired(true);
+            builder.Property(x => x.UpdateAt).HasColumnName("update_at").ValueGeneratedOnUpdate().IsRequired(true);
+            builder.Property(x => x.IdCreate).HasColumnName("id_create").IsRequired(true);
+            builder.Property(x => x.IdUpdate).HasColumnName("id_update").IsRequired(true);
+            builder.Property(x => x.Size).HasColumnName("size").IsRequired(true);
         }
     }
 }

@@ -9,13 +9,9 @@ using ProcurementService.API.DAL.Schemes.Security.UsersRoles;
 
 namespace ProcurementService.API.DAL.Core
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
-        }
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
