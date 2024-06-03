@@ -84,7 +84,7 @@
 import {UseAuthorization} from "@/hooks/access/useAuthorization";
 import {UseLogout} from "@/hooks/access/useLogout";
 import {UseRegistration} from "@/hooks/access/useRegistration";
-import setAuthHeader from "@/utils/setAuthHeader";
+// import setAuthHeader from "@/utils/setAuthHeader";
 import CustomAuthorization from "@/components/CustomAuthorization";
 
 export default {
@@ -133,7 +133,7 @@ export default {
             this.isAlert = undefined;
             let {userinfo, answer} = await UseAuthorization(this.login, this.password);
             if (answer.value) {
-                setAuthHeader(this.$cookie.getCookie('jwt'))
+                // setAuthHeader(this.$cookie.getCookie('jwt'))
                 this.clearPersonInfo();
                 this.placeholderLogin = userinfo.value.login;
                 this.getRole(userinfo.value.role)

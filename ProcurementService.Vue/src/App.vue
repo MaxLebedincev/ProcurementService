@@ -1,28 +1,22 @@
 <template>
-    <v-app>
-        <custom-app-bar></custom-app-bar>
-        <v-main>
-            <router-view></router-view>
-        </v-main>
-    </v-app>
+  <v-app>
+    <custom-app-bar></custom-app-bar>
+    <v-main>
+        <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<script>
-import CustomAppBar from "@/components/CustomAppBar";
-export default {
-    name: 'App',
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import CustomAppBar from './components/CustomAppBar.vue';
 
-    components: {
-        CustomAppBar
-    },
-
-    data: () => ({
-    }),
-    mounted() {
-    },
-    methods: {
-    }
-}
+@Options({
+  components: {
+    CustomAppBar,
+  },
+})
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
